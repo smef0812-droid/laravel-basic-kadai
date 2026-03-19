@@ -25,4 +25,8 @@ Route::get('/hello', function () {
 
 Route::get('/posts',[PostController::class, 'index']);
 
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::post('posts/store', [PostController::Class, 'store'])->name('post.store');
+Route::get('/posts', [PostController::class, 'index']);
+
 Route::get('/posts/{id}', [PostController::class, 'show']);

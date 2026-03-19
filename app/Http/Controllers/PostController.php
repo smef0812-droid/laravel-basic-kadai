@@ -17,4 +17,24 @@ class PostController extends Controller {
         $post = Post::find($id);
         return view('posts.show', compact('post'));
     }
+
+    public function create() {
+        return view('posts/create');
+    }
+
+    public function store(Request $request) {
+
+        $request->validate([
+            'post_name' => 'required|max:20',
+            'content' => 'required|max:200',
+        ]);
+
+        DB::table('posts')->insert([
+        'title' => $request->input('post_name'),
+        'content' => $request->input('content'),
+        ]);
+
+        return redirect('/posts');
+
+    }
 }
